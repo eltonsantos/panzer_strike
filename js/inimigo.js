@@ -1,0 +1,7 @@
+function Inimigo () {
+  
+}
+
+Inimigo.prototype = {
+  
+}

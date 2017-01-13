@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Panzer Strike | Eltin182</title>
+  <link rel="stylesheet" href="css/style.css">
+
+  <script src="js/animacao.js"></script>
+  <script src="js/fundo.js"></script>
+  <script src="js/teclado.js"></script>
+  <script src="js/panzer.js"></script>
+  <script src="js/tiro.js"></script>
+  <script src="js/inimigo.js"></script>
+  <script src="js/spritesheet.js"></script>
+  <script src="js/painel.js"></script>
+
+</head>
+<body>
+
+  <div class="container">
+    <h1><center>Panzer Strike | Eltin182</center></h1>
+    <canvas width="650" height="450" id="cenario"></canvas>
+    <a id="botao_jogar" href="javascript: iniciarJogo()">Jogar</a>
+    <hr>
+    <h5>
+      <center>
+        Github:
+        <a href="https://github.com/eltonsantos" target="blank">Elton Santos</a> | Linkedin:
+        <a href="https://linkedin.com/in/eltonmelosantos" target="blank">Elton Santos</a> | Twitter:
+        <a href="https://twitter.com/eltin182" target="blank">@eltin182</a>
+      </center>
+    </h5>
+  </div>
+  
+  <script>
+
+    var canvas = document.getElementById('cenario');
+    var context = canvas.getContext('2d');
+
+    var imagens, animacao, teclado, panzer;
+    var totalImagens = 0, carregadas = 0;
+    var musica;
+
+    carregarImagens();
+    carregarMusicas();
+
+    function carregarImagens () {
+      imagens = {
+        stage: "stage.jpg",
+        panzer: "player.png",
+        inimigo: "enemy.png"
+      };
+      for (var i in imagens) {
+        var img = new Image();
+        img.src = "img/"+imagens[i];
+        img.onload = carregando;
+        totalImagens++;
+
+        imagens[i] = img;
+      }
+    }
+
+    function carregarMusicas () {
+      musica = new Audio();
+      musica.src = "snd/musica2.wav";
+      musica.load();
+      musica.volume = 0.4;
+      musica.loop = true;
+      //musica.play();
+    }
+
+    function carregando () {
+      context.save();
+      context.drawImage(imagens.stage, 0, 0, canvas.width, canvas.height);
+      context.fillStyle = 'white';
+      context.font = '50px sans-serif';
+      context.fillText("Carregando", 200, 200);
+      carregadas++;
+      var tamanhoTotal = 300;
+      var tamanho = carregadas / totalImagens * tamanhoTotal;
+      context.fillStyle = 'yellow';
+      context.fillRect(180, 220, tamanho, 50);
+
+      context.restore();
+      
+      if (carregadas == totalImagens) {
+        iniciarObjetos();
+        mostrarLinkJogar();
+      }
+    }
+    
+    function iniciarObjetos () {
+      animacao = new Animacao(context);
+      teclado = new Teclado(document);
+      stage = new Fundo(context, imagens.stage);
+      panzer = new Panzer(context, teclado, imagens.panzer);
+      painel = new Painel(context, panzer);
+      animacao.novoSprite(stage);
+      animacao.novoSprite(painel);
+      animacao.novoSprite(panzer);
+
+      configuracoesIniciais();
+
+    }
+
+    function configuracoesIniciais () {
+      panzer.posicionar();
+      panzer.velocidade = 200;
+    }
+
+    function criacaoInimigos () {
+      
+    }
+
+    function novoInimigo () {
+      
+    }
+
+    function pausarJogo () {
+      if (animacao.ligado) {
+        animacao.desligar();
+        musica.pause();
+        ativarTiro(false);
+        context.save();
+        context.fillStyle = "white";
+        context.strokeStyle = "black";
+        context.font = "50px sans-serif";
+        context.fillText("PAUSADO", 210, 250);
+        context.restore();
+      }
+      else {
+        animacao.ligar();
+        //musica.play();
+        ativarTiro(true);
+      }
+    }
+    
+    function ativarTiro (ativar) {
+      if (ativar) {
+        teclado.disparou(ESPACO, function () {
+          panzer.atirar();
+        });
+      }
+      else
+        teclado.disparou(ESPACO, null);   
+    }
+
+    function mostrarLinkJogar () {
+      document.getElementById('botao_jogar').style.display = "block";
+    }
+
+    function iniciarJogo () {
+      ativarTiro(true);
+      teclado.disparou(ENTER, pausarJogo);
+      document.getElementById('botao_jogar').style.display = "none";
+      //musica.play();
+      animacao.ligar();
+    }
+
+    function gameOver () {
+      
+    }
+    
+    function removerInimigos () {
+      
+    }
+
+  </script>
+
+</body>
+</html>
