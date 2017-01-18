@@ -26,7 +26,9 @@ Animacao.prototype = {
     if (!this.ligado) return;
 
     var agora = new Date().getTime();
-    if (this.ultimoCiclo == 0) this.ultimoCiclo = agora;
+    if (this.ultimoCiclo == 0)
+      this.ultimoCiclo = agora;
+
     this.decorrido = agora - this.ultimoCiclo;
 
     for(var i in this.sprites)

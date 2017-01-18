@@ -11,8 +11,8 @@ function Panzer (context, teclado, imagem) {
   this.y = 0;
   this.velocidade = 0;
 
-  this.sheet = new Spritesheet(context, imagem, 4, 3);
-  this.sheet.intervalo = 60;
+  this.spritesheet = new Spritesheet(context, imagem, 4, 3);
+  this.spritesheet.intervalo = 60;
 
   this.andando = false;
   this.direcao = DIRECAO_CIMA;
@@ -24,32 +24,32 @@ Panzer.prototype = {
     if (this.teclado.pressionada(SETA_ESQUERDA) && this.x > 0) {
       this.direcao = DIRECAO_ESQUERDA;
       this.x -= 3;
-      this.sheet.linha = 2;
-      this.sheet.coluna = 0;
+      this.spritesheet.linha = 2;
+      this.spritesheet.coluna = 0;
 
     }
     else if (this.teclado.pressionada(SETA_CIMA) && this.y > 0) {
       this.direcao = DIRECAO_CIMA;
       this.y -= 3;
-      this.sheet.linha = 3;
-      this.sheet.coluna = 0;
+      this.spritesheet.linha = 3;
+      this.spritesheet.coluna = 0;
     }
     else if (this.teclado.pressionada(SETA_DIREITA) && this.x < this.context.canvas.width - 60) {
       this.direcao = DIRECAO_DIREITA;
       this.x += 3;
-      this.sheet.linha = 1;
-      this.sheet.coluna = 0;
+      this.spritesheet.linha = 1;
+      this.spritesheet.coluna = 0;
     }
     else if (this.teclado.pressionada(SETA_BAIXO) && this.y < this.context.canvas.height - 60) {
       this.direcao = DIRECAO_BAIXO;
       this.y += 3;
-      this.sheet.linha = 0;
-      this.sheet.coluna = 0;
+      this.spritesheet.linha = 0;
+      this.spritesheet.coluna = 0;
     }
   },
   desenhar: function () {
-    this.sheet.desenhar(this.x, this.y);
-    this.sheet.proximoQuadro();
+    this.spritesheet.desenhar(this.x, this.y);
+    this.spritesheet.proximoQuadro();
     // this.context.fillRect(this.x, this.y, 60, 30);
     // this.context.fillStyle = 'black';
   },
@@ -75,7 +75,7 @@ Panzer.prototype = {
     }
   },
   posicionar: function () {
-    //var canvas = this.context.canvas;
+    var canvas = this.context.canvas;
     this.x = 280;
     this.y = 225;
   }

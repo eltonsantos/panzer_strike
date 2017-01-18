@@ -7,11 +7,11 @@
   <link rel="stylesheet" href="css/style.css">
 
   <script src="js/animacao.js"></script>
-  <script src="js/fundo.js"></script>
   <script src="js/teclado.js"></script>
+  <script src="js/fundo.js"></script>
   <script src="js/panzer.js"></script>
-  <script src="js/tiro.js"></script>
   <script src="js/inimigo.js"></script>
+  <script src="js/tiro.js"></script>
   <script src="js/spritesheet.js"></script>
   <script src="js/painel.js"></script>
 
@@ -73,9 +73,11 @@
     function carregando () {
       context.save();
       context.drawImage(imagens.stage, 0, 0, canvas.width, canvas.height);
+
       context.fillStyle = 'white';
       context.font = '50px sans-serif';
       context.fillText("Carregando", 200, 200);
+      
       carregadas++;
       var tamanhoTotal = 300;
       var tamanho = carregadas / totalImagens * tamanhoTotal;
