@@ -12,7 +12,8 @@ function Panzer (context, teclado, imagem) {
   this.velocidade = 0;
 
   this.spritesheet = new Spritesheet(context, imagem, 4, 3);
-  this.spritesheet.intervalo = 60;
+  this.spritesheet.linha = 3;
+  this.spritesheet.intervalo = 3000;
 
   this.andando = false;
   this.direcao = DIRECAO_CIMA;
@@ -44,7 +45,7 @@ Panzer.prototype = {
       this.direcao = DIRECAO_BAIXO;
       this.y += 3;
       this.spritesheet.linha = 0;
-      this.spritesheet.coluna = 0;
+      this.spritesheet.coluna = 1;
     }
   },
   desenhar: function () {

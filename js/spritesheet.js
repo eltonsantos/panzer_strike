@@ -4,7 +4,7 @@ function Spritesheet(context, imagem, linhas, colunas) {
   this.numLinhas = linhas;
   this.numColunas = colunas;
   this.intervalo = 0;
-  this.linha = 3;
+  this.linha = 0;
   this.coluna = 0;
   this.fimDoCiclo = null;
 }

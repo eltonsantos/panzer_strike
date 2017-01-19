@@ -25,6 +25,8 @@ Animacao.prototype = {
   proximoFrame: function () {
     if (!this.ligado) return;
 
+    this.limparTela();
+
     var agora = new Date().getTime();
     if (this.ultimoCiclo == 0)
       this.ultimoCiclo = agora;
@@ -80,5 +82,10 @@ Animacao.prototype = {
 
     this.sprites = novoSprites;
     this.processamentos = novoProcessamentos;
+  },
+
+  limparTela: function () {
+    var context = this.context;
+    context.clearRect(0, 0, context.canvas.width, context.canvas.height);
   }
 }

@@ -61,15 +61,6 @@
       }
     }
 
-    function carregarMusicas () {
-      musica = new Audio();
-      musica.src = "snd/musica2.wav";
-      musica.load();
-      musica.volume = 0.4;
-      musica.loop = true;
-      //musica.play();
-    }
-
     function carregando () {
       context.save();
       context.drawImage(imagens.stage, 0, 0, canvas.width, canvas.height);
@@ -98,6 +89,7 @@
       stage = new Fundo(context, imagens.stage);
       panzer = new Panzer(context, teclado, imagens.panzer);
       painel = new Painel(context, panzer);
+      
       animacao.novoSprite(stage);
       animacao.novoSprite(painel);
       animacao.novoSprite(panzer);
@@ -133,7 +125,7 @@
       }
       else {
         animacao.ligar();
-        //musica.play();
+        musica.play();
         ativarTiro(true);
       }
     }
@@ -148,6 +140,15 @@
         teclado.disparou(ESPACO, null);   
     }
 
+    function carregarMusicas () {
+      musica = new Audio();
+      musica.src = "snd/musica2.wav";
+      musica.load();
+      musica.volume = 0.4;
+      musica.loop = true;
+      //musica.play();
+    }
+
     function mostrarLinkJogar () {
       document.getElementById('botao_jogar').style.display = "block";
     }
@@ -156,7 +157,7 @@
       ativarTiro(true);
       teclado.disparou(ENTER, pausarJogo);
       document.getElementById('botao_jogar').style.display = "none";
-      //musica.play();
+      musica.play();
       animacao.ligar();
     }
 
