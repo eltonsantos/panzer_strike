@@ -21,6 +21,9 @@ Tiro.prototype = {
   atualizar: function () {
     this.x += this.velocidadeX;
     this.y += this.velocidadeY;
+    if (this.y < this.altura) {
+      this.animacao.excluirSprite(this);
+    }
   },
   desenhar: function () {
     var ctx = this.context;
