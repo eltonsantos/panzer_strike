@@ -3,24 +3,32 @@ function Inimigo (context, imagem) {
   this.imagem = imagem;
   this.x = 0;
   this.y = 0;
-  this.velocidade = 0; 
+  this.velocidade = 0;
+
+  this.spritesheet = new Spritesheet(context, imagem, 4, 6);
+  this.spritesheet.linha = 1;
+  this.spritesheet.coluna = 3;
+  this.spritesheet.intervalo = 3000;
+
 }
 
 Inimigo.prototype = {
   atualizar: function () {
-    this.y = this.y + this.velocidade * this.animacao.decorrido / 1000;
-    //this.y += this.velocidade;
-    if (this.y > this.context.canvas.height) {
+    this.x += -this.velocidade * this.animacao.decorrido / 3000;
+
+    //console.log(this.x);
+    //console.log(this.context.canvas.width < 0);
+
+    if (this.context.canvas.width < 0) {
       this.animacao.excluirSprite(this);
     }
     
   },
   desenhar: function () {
-    var ctx = this.context;
-    var img = this.imagem;
-    //ctx.drawImage(img, (canvas.width)-10, this.y, img.width, img.height);
-    // drawImage(imagem, x, y, largura, altura): desenha a imagem inteira, na posição e tamanho especificados;
-    // drawImage(imagem, xOrigem, yOrigem, larguraOrigem, alturaOrigem, xDestino, yDestino, larguraDestino, alturaDestino): desenha parte da imagem
-    ctx.drawImage(img, this.x, this.y, img.width, img.height);
+    // Desenhar imagem estática
+    // var ctx = this.context;
+    // var img = this.imagem;
+    this.spritesheet.desenhar(this.x, this.y);
+    this.spritesheet.proximoQuadro();
   }
 }

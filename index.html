@@ -49,7 +49,7 @@
       imagens = {
         stage: "stage.jpg",
         panzer: "player.png",
-        inimigo: "enemy.png"
+        inimigo: "enemy2.png"
       };
       for (var i in imagens) {
         var img = new Image();
@@ -128,9 +128,10 @@
 
       inimigo.velocidade = Math.floor(500+Math.random()*(1000-500+1));
 
-      inimigo.x = Math.floor(Math.random()*(canvas.width-imgInimigo.width+1));
-      
-      inimigo.y = -imgInimigo.height;
+      inimigo.y = Math.floor(Math.random()*(canvas.height+imgInimigo.height-250));
+      // canvas: 650px, 450px
+      // enemy2: 400px, 200px
+      inimigo.x = this.canvas.width;
 
       animacao.novoSprite(inimigo);
 
