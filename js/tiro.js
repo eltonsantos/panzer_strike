@@ -33,5 +33,11 @@ Tiro.prototype = {
     ctx.arc(this.x, this.y, this.raio, 0, 2*Math.PI, false);
     ctx.fill();
     ctx.restore();
+  },
+  retangulosColisao: function() {
+    return [ {x: this.x, y: this.y, largura: this.largura, altura: this.altura} ];
+  },
+  colidiuCom: function(outro) {
+   
   }
 }

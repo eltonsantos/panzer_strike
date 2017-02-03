@@ -3,17 +3,20 @@ var DIRECAO_CIMA = 2;
 var DIRECAO_DIREITA = 3;
 var DIRECAO_BAIXO = 4;
 
-function Panzer (context, teclado, imagem) {
+function Panzer (context, teclado, imagem, imgExplosao) {
   this.context = context;
   this.teclado = teclado;
   this.imagem = imagem;
   this.x = 0;
   this.y = 0;
   this.velocidade = 0;
+  this.vidasExtras = 3;
+  this.acabaramVidas = null;
 
   this.spritesheet = new Spritesheet(context, imagem, 4, 3);
   this.spritesheet.linha = 1;
   this.spritesheet.intervalo = 3000;
+  this.imgExplosao = imgExplosao;
 
   this.andando = false;
   this.direcao = DIRECAO_DIREITA;
@@ -51,12 +54,12 @@ Panzer.prototype = {
   desenhar: function () {
     this.spritesheet.desenhar(this.x, this.y);
     this.spritesheet.proximoQuadro();
-    // this.context.fillRect(this.x, this.y, 60, 30);
-    // this.context.fillStyle = 'black';
   },
   atirar: function () {
     var tiro = new Tiro(this.context, this);
     this.animacao.novoSprite(tiro);
+    this.colisor.novoSprite(tiro);
+    
     tiro.x = this.x + 30;
     tiro.y = this.y + 30;
     tiro.raio = 5;
@@ -75,7 +78,56 @@ Panzer.prototype = {
       tiro.velocidadeY = 20;
     }
   },
-  posicionar: function () {
+  retangulosColisao: function () {
+    var rets = 
+    [ 
+      {x: this.x+2, y: this.y+15, largura: 55, altura: 40},
+      //{x: this.x+13, y: this.y+3, largura: 10, altura: 33},
+      {x: this.x+55, y: this.y+20, largura: 9, altura: 13}
+    ];
+    var ctx = this.context;
+      
+    for (var i in rets) {
+      ctx.save();
+      ctx.strokeStyle = 'yellow';
+      ctx.strokeRect(rets[i].x, rets[i].y, rets[i].largura, rets[i].altura);
+      ctx.restore();
+    }  
+
+    return rets;
+  },
+  colidiuCom: function(outro) {
+    if (outro instanceof Inimigo) {
+      this.animacao.excluirSprite(this);
+      this.animacao.excluirSprite(outro);
+      this.colisor.excluirSprite(this);
+      this.colisor.excluirSprite(outro);
+       
+      var exp1 = new Explosao(this.context, this.imgExplosao,
+                               this.x, this.y);
+      var exp2 = new Explosao(this.context, this.imgExplosao,
+                               outro.x, outro.y);
+       
+      this.animacao.novoSprite(exp1);
+      this.animacao.novoSprite(exp2);
+       
+      var panzer = this;
+      exp1.fimDaExplosao = function() {
+        panzer.vidasExtras--;
+          
+        if (panzer.vidasExtras < 1) {
+          if (panzer.acabaramVidas) panzer.acabaramVidas();
+        }
+        else {
+          // Recolocar a nave no engine
+          panzer.colisor.novoSprite(panzer);
+          panzer.animacao.novoSprite(panzer);
+          panzer.posicionar();
+        }
+      }
+    }
+  },  
+  posicionar: function() {
     var canvas = this.context.canvas;
     this.x = 0;
     this.y = 225;
