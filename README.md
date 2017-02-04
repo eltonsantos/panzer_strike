@@ -15,9 +15,13 @@ https://www.linkedin.com/in/eltonmelosantos
 https://twitter.com/eltin182
 
 ## Melhorias para próximas versões
+
 1) O inimigo vai atirar (somente o chefe e um subchefe)
+
 2) Haverá um subchefe
+
 3) Haverá um chefe com HP
+
 4) Coletar vida extra
 
 ## Como jogar
