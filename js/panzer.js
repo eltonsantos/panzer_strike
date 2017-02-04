@@ -84,14 +84,14 @@ Panzer.prototype = {
       {x: this.x+2, y: this.y+15, largura: 55, altura: 40},
       {x: this.x+55, y: this.y+20, largura: 9, altura: 13}
     ];
-    var ctx = this.context;
+    // var ctx = this.context;
       
-    for (var i in rets) {
-      ctx.save();
-      ctx.strokeStyle = 'yellow';
-      ctx.strokeRect(rets[i].x, rets[i].y, rets[i].largura, rets[i].altura);
-      ctx.restore();
-    }  
+    // for (var i in rets) {
+    //   ctx.save();
+    //   ctx.strokeStyle = 'yellow';
+    //   ctx.strokeRect(rets[i].x, rets[i].y, rets[i].largura, rets[i].altura);
+    //   ctx.restore();
+    // }  
 
     return rets;
   },

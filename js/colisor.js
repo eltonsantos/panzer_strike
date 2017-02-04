@@ -35,27 +35,25 @@ Colisor.prototype = {
     var rets1 = sprite1.retangulosColisao();
     var rets2 = sprite2.retangulosColisao();
     
-    
-    
     var colidiu = false;
 
     // Testar as colisões entre eles
     colisoes:
     for (var i in rets1) {
-       for (var j in rets2) {
-          // Abstraindo a fórmula!
-          if (this.retangulosColidem(rets1[i], rets2[j])) {
-             // Eles colidem, vamos notificá-los
-             sprite1.colidiuCom(sprite2);
-             sprite2.colidiuCom(sprite1);
-             
-             // Tratador geral
-             if (this.aoColidir) this.aoColidir(sprite1, sprite2);
-             
-             // Não precisa terminar de ver todos os retângulos
-             break colisoes;
-          }
-       }
+      for (var j in rets2) {
+        // Abstraindo a fórmula!
+        if (this.retangulosColidem(rets1[i], rets2[j])) {
+          // Eles colidem, vamos notificá-los
+          sprite1.colidiuCom(sprite2);
+          sprite2.colidiuCom(sprite1);
+           
+          // Tratador geral
+          if (this.aoColidir) this.aoColidir(sprite1, sprite2);
+           
+          // Não precisa terminar de ver todos os retângulos
+          break colisoes;
+        }
+      }
     }
   },
   retangulosColidem: function (ret1, ret2) {

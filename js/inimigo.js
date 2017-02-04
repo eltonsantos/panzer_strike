@@ -1,9 +1,10 @@
-function Inimigo (context, imagem) {
+function Inimigo (context, imagem, imgExplosao) {
   this.context = context;
   this.imagem = imagem;
   this.x = 0;
   this.y = 0;
   this.velocidade = 0;
+  this.imgExplosao = imgExplosao;
 
   this.spritesheet = new Spritesheet(context, imagem, 4, 6);
   this.spritesheet.linha = 1;
@@ -15,9 +16,11 @@ function Inimigo (context, imagem) {
 Inimigo.prototype = {
   atualizar: function () {
     this.x += -this.velocidade * this.animacao.decorrido / 3000;
-
-    if (this.context.canvas.width < this.x) {
+    //console.log("this.context.canvas.width "+this.context.canvas.width);
+    //console.log("this.x: "+this.x);
+    if (this.x <= 0) {
       this.animacao.excluirSprite(this);
+      this.colisor.excluirSprite(this);
     }
     
   },
@@ -37,18 +40,15 @@ Inimigo.prototype = {
     ];
     
     // Desenhando os retângulos para visualização
+    // var ctx = this.context;
     
-    var ctx = this.context;
-    
-    for (var i in rets) {
-       ctx.save();
-       ctx.strokeStyle = 'yellow';
-       ctx.strokeRect(rets[i].x, rets[i].y, rets[i].largura, 
-                      rets[i].altura);
-       ctx.restore();
-    }
-    
-    
+    // for (var i in rets) {
+    //    ctx.save();
+    //    ctx.strokeStyle = 'yellow';
+    //    ctx.strokeRect(rets[i].x, rets[i].y, rets[i].largura, 
+    //                   rets[i].altura);
+    //    ctx.restore();
+    // }
     return rets;
   },
   colidiuCom: function(outro) {

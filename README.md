@@ -5,7 +5,7 @@ Quer aprender como desenvolver jogos como esse?
 Adquira o livro [Desenvolva jogos com HTML5 Canvas e Javascript](https://www.casadocodigo.com.br/products/livro-jogos-html-javascript).
 
 # Jogue Online
-Ainda não disponível
+Ainda não disponível.
 
 # Contatos
 Podem entrar em contato comigo através de diversos lugares além do email.
