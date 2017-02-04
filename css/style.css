@@ -1,5 +1,6 @@
 .container { width: 650px; height: 540px; margin: 0 auto; }
 
+.painel { background-color: #eee; height: 40px; }
 #cenario { background: url(../img/stage.jpg); width: : 650px; height: 450px;}
 
 #botao_jogar
@@ -8,7 +9,7 @@
   display: none;
   /* Cores e fundo */
   color: yellow;
-  background: url("../img/botao-jogar.png");
+  background: url("../img/play-button.png");
   /* Fonte */
   font-size: 20px;
   font-family: sans-serif;
@@ -17,8 +18,8 @@
   text-shadow: 2px 2px 5px black;
   /* Posicionamento */
   position: absolute;
-  left: 680px;
-  top: 370px;
+  left: 690px;
+  top: 320px;
   /* A imagem do botão é 72x72, descontamos os paddings */
   width: 52px;
   height: 26px;

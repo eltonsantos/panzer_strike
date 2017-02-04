@@ -23,7 +23,7 @@
   <div class="container">
     <h1><center>Panzer Strike | Eltin182</center></h1>
     <canvas width="650" height="450" id="cenario"></canvas>
-    <a id="botao_jogar" href="javascript: iniciarJogo()">Jogar</a>
+    <a id="botao_jogar" href="javascript: iniciarJogo()"></a>
     <hr>
     <h5>
       <center>
@@ -51,8 +51,10 @@
       imagens = {
         stage: "stage.jpg",
         panzer: "player.png",
-        inimigo: "enemy2.png",
-        explosao: "explosao.png"
+        inimigo: "enemy.png",
+        explosao: "explosao.png",
+        begin: "bg_main.jpg",
+        end: "game_over.jpg"
       };
       for (var i in imagens) {
         var img = new Image();
@@ -66,17 +68,17 @@
 
     function carregando () {
       context.save();
-      context.drawImage(imagens.stage, 0, 0, canvas.width, canvas.height);
+      context.drawImage(imagens.begin, 0, 0, canvas.width, canvas.height);
 
       context.fillStyle = 'white';
       context.font = '50px sans-serif';
-      context.fillText("Carregando", 200, 200);
+      context.fillText("Panzer Strike", 180, 70);
       
       carregadas++;
       var tamanhoTotal = 300;
       var tamanho = carregadas / totalImagens * tamanhoTotal;
-      context.fillStyle = 'yellow';
-      context.fillRect(180, 220, tamanho, 50);
+      context.fillStyle = '#5B3626';
+      context.fillRect(180, 120, tamanho, 20);
 
       context.restore();
       
@@ -97,6 +99,7 @@
       animacao.novoSprite(stage);
       animacao.novoSprite(painel);
       animacao.novoSprite(panzer);
+
       colisor.novoSprite(panzer);
       animacao.novoProcessamento(colisor);
 
@@ -217,14 +220,13 @@
       musica.pause();
       musica.currentTime = 0.0;
 
-      context.drawImage(imagens.stage, 0, 0, canvas.width, canvas.height);
+      context.drawImage(imagens.end, 0, 0, canvas.width, canvas.height);
 
       context.save();
       context.fillStyle = 'white';
       context.strokeStyle = 'black';
       context.font = '70px sans-serif';
-      context.fillText("GAME OVER", 40, 200);
-      context.strokeText("GAME OVER", 40, 200);
+      context.fillText("GAME OVER", 120, 200);
       context.restore();
        
       mostrarLinkJogar();

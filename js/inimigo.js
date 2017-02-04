@@ -16,7 +16,7 @@ Inimigo.prototype = {
   atualizar: function () {
     this.x += -this.velocidade * this.animacao.decorrido / 3000;
 
-    if (this.context.canvas.width < 0) {
+    if (this.context.canvas.width < this.x) {
       this.animacao.excluirSprite(this);
     }
     
@@ -32,8 +32,8 @@ Inimigo.prototype = {
     // Estes valores vão sendo ajustados aos poucos
     var rets = 
     [ 
-       {x: this.x+10, y: this.y+5, largura: 50, altura: 40},
-       {x: this.x+1, y: this.y+10, largura: 9, altura: 13}
+      {x: this.x+10, y: this.y+5, largura: 50, altura: 40},
+      {x: this.x+1, y: this.y+10, largura: 9, altura: 13}
     ];
     
     // Desenhando os retângulos para visualização

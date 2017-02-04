@@ -82,7 +82,6 @@ Panzer.prototype = {
     var rets = 
     [ 
       {x: this.x+2, y: this.y+15, largura: 55, altura: 40},
-      //{x: this.x+13, y: this.y+3, largura: 10, altura: 33},
       {x: this.x+55, y: this.y+20, largura: 9, altura: 13}
     ];
     var ctx = this.context;

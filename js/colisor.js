@@ -31,8 +31,12 @@ Colisor.prototype = {
     this.processarExclusoes();
   },
   testarColisao: function (sprite1, sprite2) {
+  
     var rets1 = sprite1.retangulosColisao();
     var rets2 = sprite2.retangulosColisao();
+    
+    
+    
     var colidiu = false;
 
     // Testar as colisões entre eles

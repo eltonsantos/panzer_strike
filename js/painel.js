@@ -22,13 +22,10 @@ Painel.prototype = {
       x += 40;
     }  
     
-    // Torna a dobrar
     this.context.scale(2, 2);
     
-    // Para facilitar um pouco...
     var ctx = this.context;
-    
-    // Pontuação
+
     ctx.save();
     ctx.fillStyle = 'white';
     ctx.font = '18px sans-serif';
