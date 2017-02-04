@@ -16,13 +16,10 @@ https://twitter.com/eltin182
 
 ## Melhorias para próximas versões
 
-1) O inimigo vai atirar (somente o chefe e um subchefe)
-
-2) Haverá um subchefe
-
-3) Haverá um chefe com HP
-
-4) Coletar vida extra
+1. O inimigo vai atirar (somente o chefe e um subchefe)
+2. Haverá um subchefe
+3. Haverá um chefe com HP
+4. Coletar vida extra
 
 ## Como jogar
 Destrua o maior número de inimigos que consegui e depois veja sua pontuação! Divirta-se!!
