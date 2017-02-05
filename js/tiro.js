@@ -21,15 +21,8 @@ Tiro.prototype = {
   atualizar: function () {
     this.x += this.velocidadeX;
     this.y += this.velocidadeY;
-    // console.log('this.x: '+this.x);
-    // console.log('this.y: '+this.y);
-    // console.log('this.altura: '+this.altura);
-    // console.log('this.largura: '+this.largura);
-    // console.log('this.context.canvas.width: '+this.context.canvas.width);
-    // console.log('this.context.canvas.height: '+this.context.canvas.height);
 
     if (this.y < this.altura || this.y > this.context.canvas.height || this.x < this.largura || this.x > this.context.canvas.width) {
-      console.log('passa por aqui');
       this.animacao.excluirSprite(this);
       this.colisor.excluirSprite(this);
     }
