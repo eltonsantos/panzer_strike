@@ -15,7 +15,7 @@ function Inimigo (context, imagem, imgExplosao) {
 
 Inimigo.prototype = {
   atualizar: function () {
-    this.x += -this.velocidade * this.animacao.decorrido / 3000;
+    this.x += -this.velocidade * this.animacao.decorrido / 2000;
     //console.log("this.context.canvas.width "+this.context.canvas.width);
     //console.log("this.x: "+this.x);
     if (this.x <= 0) {
@@ -35,18 +35,18 @@ Inimigo.prototype = {
     // Estes valores vão sendo ajustados aos poucos
     var rets = 
     [ 
-      {x: this.x+10, y: this.y+5, largura: 50, altura: 40},
-      {x: this.x+1, y: this.y+10, largura: 9, altura: 13}
+      {x: this.x+8, y: this.y+3, largura: 53, altura: 45},
+      {x: this.x+1, y: this.y+10, largura: 9, altura: 15}
     ];
     
     // Desenhando os retângulos para visualização
-    var ctx = this.context;   
-    for (var i in rets) {
-      ctx.save();
-      ctx.strokeStyle = 'yellow';
-      ctx.strokeRect(rets[i].x, rets[i].y, rets[i].largura, rets[i].altura);
-      ctx.restore();
-    }
+    // var ctx = this.context;   
+    // for (var i in rets) {
+    //   ctx.save();
+    //   ctx.strokeStyle = 'yellow';
+    //   ctx.strokeRect(rets[i].x, rets[i].y, rets[i].largura, rets[i].altura);
+    //   ctx.restore();
+    // }
 
     return rets;
   },

@@ -66,32 +66,40 @@ Panzer.prototype = {
     tiro.cor = 'yellow';
 
     if (this.direcao == DIRECAO_ESQUERDA) {
-      tiro.velocidadeX = -20;
+      tiro.velocidadeX = -40;
     }
     else if (this.direcao == DIRECAO_CIMA) {
-      tiro.velocidadeY = -20;
+      tiro.velocidadeY = -40;
     }
     else if (this.direcao == DIRECAO_DIREITA) {
-      tiro.velocidadeX = 20;
+      tiro.velocidadeX = 40;
     }
     else if (this.direcao == DIRECAO_BAIXO) {
-      tiro.velocidadeY = 20;
+      tiro.velocidadeY = 40;
     }
   },
   retangulosColisao: function () {
-    var rets = 
-    [ 
-      {x: this.x+2, y: this.y+15, largura: 55, altura: 40},
-      {x: this.x+55, y: this.y+20, largura: 9, altura: 13}
-    ];
-    
-    var ctx = this.context;    
-    for (var i in rets) {
-      ctx.save();
-      ctx.strokeStyle = 'yellow';
-      ctx.strokeRect(rets[i].x, rets[i].y, rets[i].largura, rets[i].altura);
-      ctx.restore();
-    }  
+    if (this.direcao == DIRECAO_ESQUERDA) {
+      var rets = [ {x: this.x+8, y: this.y+13, largura: 52, altura: 44}, {x: this.x+0, y: this.y+20, largura: 9, altura: 14} ];
+    }
+    else if (this.direcao == DIRECAO_CIMA) {
+      var rets = [ {x: this.x+13, y: this.y+15, largura: 40, altura: 46}, {x: this.x+25, y: this.y+1, largura: 15, altura: 13} ]; 
+    }
+    else if (this.direcao == DIRECAO_DIREITA) {
+      var rets = [ {x: this.x+2, y: this.y+14, largura: 55, altura: 43}, {x: this.x+55, y: this.y+20, largura: 9, altura: 14} ];
+    }
+    else if (this.direcao == DIRECAO_BAIXO) {
+      var rets = [ {x: this.x+12, y: this.y+8, largura: 40, altura: 50} ];
+    }
+
+    // Desenhando os retângulos para visualização
+    // var ctx = this.context;    
+    // for (var i in rets) {
+    //   ctx.save();
+    //   ctx.strokeStyle = 'yellow';
+    //   ctx.strokeRect(rets[i].x, rets[i].y, rets[i].largura, rets[i].altura);
+    //   ctx.restore();
+    // }  
 
     return rets;
   },
